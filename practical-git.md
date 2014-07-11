@@ -6,16 +6,16 @@ Antes de empezar a soltar comandos como un bellaco, hay que explicar los concept
 
 Comenzaremos con los diferentes estadios en los que puede encontrarse nuestro código (nuestros cambios sobre el contenido de los ficheros, en realidad).
 
-1. *Workspace*: Es el estado real de nuestros ficheros. Tal y como los vemos en nuestro editor.
-2. *Stage*: Aquí se encuentran los cambios sobre nuestros ficheros que se incluirán en el próximo _commit_. Cuando hacemos un `git add`, un `git rm` o un `git mv`, estamos metiendo cambios en el _stage_, indicándole a Git que en el próximo _commit_ esos cambios irán incluidos.
-3. *Commits* (locales): Cada _commit_ es un grupo de cambios sobre uno o varios ficheros, con una descripción, una fecha, un autor, etc. La gran diferencia con *SVN* es que los commits en *Git* son locales hasta que no se hace la subida al servidor. Estos commits locales (*importante lo de que sean locales*) pueden ser modificados sin peligro (con _modificados_ quiero decir que se les pueden añadir más cambios, modificarles el mensaje o incluso eliminarlos).
-4. *Commits* (remotos): Cuando se suben cambios al servidor (o como se le llama en Git: el _remoto_), se considera que estos entran a formar parte del histórico compartido entre los desarrolladores del proyecto y, por lo tanto, no es buena práctica modificarlos como se hace cuando los _commits_ son locales (y además hacerlo puede provocar importantes quebraderos de cabeza).
+1. **Workspace**: Es el estado real de nuestros ficheros. Tal y como los vemos en nuestro editor.
+2. **Stage**: Aquí se encuentran los cambios sobre nuestros ficheros que se incluirán en el próximo _commit_. Cuando hacemos un `git add`, un `git rm` o un `git mv`, estamos metiendo cambios en el _stage_, indicándole a Git que en el próximo _commit_ esos cambios irán incluidos.
+3. **Commits** (locales): Cada _commit_ es un grupo de cambios sobre uno o varios ficheros, con una descripción, una fecha, un autor, etc. La gran diferencia con _SVN_ es que los commits en _Git_ son locales hasta que no se hace la subida al servidor. Estos commits locales (**importante lo de que sean locales**) pueden ser modificados sin peligro (con _modificados_ quiero decir que se les pueden añadir más cambios, modificarles el mensaje o incluso eliminarlos).
+4. **Commits** (remotos): Cuando se suben cambios al servidor (o como se le llama en Git: el _remoto_), se considera que estos entran a formar parte del histórico compartido entre los desarrolladores del proyecto y, por lo tanto, no es buena práctica modificarlos como se hace cuando los _commits_ son locales (y además hacerlo puede provocar importantes quebraderos de cabeza).
 
 En resumen, el _flow_ de trabajo con Git es:
 
-1. Hago cambios en mis ficheros (*workspace*)
-2. Añado al *stage* los cambios que quiero commitear
-3. Hago el *commit*
+1. Hago cambios en mis ficheros (**workspace**)
+2. Añado al **stage** los cambios que quiero commitear
+3. Hago el **commit**
 4. Subo los cambios al remoto
 
 ## Comandos específicos
@@ -41,7 +41,7 @@ $ cd my-awesome-bootstrap/
 
 ### Ver el estado de nuestro _stage_ y _workspace_
 
-Un comando que se usa *muy* a menudo es `git status`, con el que obtenemos información sobre el estado de nuestro _stage_ y nuestro _workspace_. Es decir, información sobre qué tenemos añadido para formar parte del próximo _commit_, qué no, qué ficheros son nuevos en el sistema y Git aún no conoce, etc.
+Un comando que se usa **muy** a menudo es `git status`, con el que obtenemos información sobre el estado de nuestro _stage_ y nuestro _workspace_. Es decir, información sobre qué tenemos añadido para formar parte del próximo _commit_, qué no, qué ficheros son nuevos en el sistema y Git aún no conoce, etc.
 
 Cuando ejecutamos `git status`, se nos mostrará algo tal que:
 
@@ -69,13 +69,13 @@ Untracked files:
 
 Cada sección indica en qué estado están los cambios nuestro _workspace_ con respecto al _stage_.
 
-* *Changes to be commited*: Esta sección muestra los cambios añadidos al _stage_, es decir, los que formarán parte del próximo commit. Junto a cada fichero se muestra qué se ha hecho con él: *modified*, *deleted*, *added*…
-* *Changes not staged for commit*: En esta sección se muestran los cambios que se han hecho sobre nuestros ficheros, pero que no han sido añadidos al _stage_ y por tanto *no* formarán parte del próximo commit. Al igual que en la sección anterior, se muestra el tipo de cambio que se ha hecho sobre cada fichero: *modified*, *deleted*, *added*…
-* *Untracked files*: Aquí se ven los ficheros que están en nuestro _workspace_ de los que Git no tiene conocimiento aún. Es decir, no forman parte del control de versiones y por tanto, lógicamente, no formarán parte del próximo _commit_.
+* **Changes to be commited**: Esta sección muestra los cambios añadidos al _stage_, es decir, los que formarán parte del próximo commit. Junto a cada fichero se muestra qué se ha hecho con él: **modified**, **deleted**, **added**…
+* **Changes not staged for commit**: En esta sección se muestran los cambios que se han hecho sobre nuestros ficheros, pero que no han sido añadidos al _stage_ y por tanto **no** formarán parte del próximo commit. Al igual que en la sección anterior, se muestra el tipo de cambio que se ha hecho sobre cada fichero: **modified**, **deleted**, **added**…
+* **Untracked files**: Aquí se ven los ficheros que están en nuestro _workspace_ de los que Git no tiene conocimiento aún. Es decir, no forman parte del control de versiones y por tanto, lógicamente, no formarán parte del próximo _commit_.
 
 Si leemos atentamente el resultado de `git status`, podemos ver que se nos ofrecen consejos sobre qué hacer con cada fichero en cada sección:
 
-En *Changes to be commited* nos dice:
+En **Changes to be commited** nos dice:
 
 ```sh
 use "git reset HEAD <file>..." to unstage
