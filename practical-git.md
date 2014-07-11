@@ -308,6 +308,8 @@ Si queremos ahorrarnos el paso del editor, podemos especificar el mensaje direct
 $ git commit -m 'My cool and descriptive message'
 ```
 
+### Modificar el último _commit_
+
 Si nos hemos olvidado de añadir algo al último _commit_ y **aún no lo hemos subido al servidor**, podemos arreglarlo de la siguiente forma:
 
 ```sh
