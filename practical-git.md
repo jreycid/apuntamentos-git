@@ -308,6 +308,21 @@ Si queremos ahorrarnos el paso del editor, podemos especificar el mensaje direct
 $ git commit -m 'My cool and descriptive message'
 ```
 
+Si nos hemos olvidado de añadir algo al último _commit_ y **aún no lo hemos subido al servidor**, podemos arreglarlo de la siguiente forma:
+
+```sh
+$ git add forgotten-file.txt
+$ git commit --amend
+```
+
+Al hacerlo, se nos abrirá el editor con el mensaje del último _commit_ listo para ser modificado (si queremos). Una vez guardado y cerrado el editor, se modificará el _commit_ con los cambios sobre `forgotten-file.txt` añadidos.
+
+Si queremos modificar el _commit_ y reutilizar su mensaje, ahorrándonos todo el tema del editor, podemos hacerlo con:
+
+```sh
+$ git commit --amend -C HEAD
+```
+
 ### Eliminar _commits_
 
 Algo que también se hace relativamente a menudo es eliminar commits. Es muy importante tener en cuenta que **no se deben eliminar commits que ya se hayan subido al remoto**. Lo normal es querer eliminar el último _commit_ (o los últimos hasta un punto) que aún no se han subido.
