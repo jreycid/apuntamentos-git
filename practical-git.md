@@ -39,6 +39,26 @@ $ git clone https://github.com/twbs/bootstrap.git my-awesome-bootstrap
 $ cd my-awesome-bootstrap/
 ```
 
+### Añadir un servidor a un repositorio local existente
+
+A veces creamos un repositorio local (con `git init`) y no lo tenemos asociado a un repositorio remoto, por lo que no podremos hacer `git push` para subir cambios ya que no hay sitio donde hacerlo.
+
+Si nos dan más adelante una URL para subir nuestro repositorio local a un repositorio remoto, podemos añadirlo como _remote_ usando:
+
+```sh
+$ git remote add origin https://github.com/twbs/bootstrap.git
+```
+
+Con esto creamos un _remote_ llamado **origin**, asociado a la URL que le hemos pasado.
+
+Para ver los _remotes_ que tiene nuestro repositorio, podemos:
+
+```sh
+$ git remote -v
+origin https://github.com/twbs/bootstrap.git (fetch)
+origin https://github.com/twbs/bootstrap.git (push)
+```
+
 ### Ver el estado de nuestro _stage_ y _workspace_
 
 Un comando que se usa **muy** a menudo es `git status`, con el que obtenemos información sobre el estado de nuestro _stage_ y nuestro _workspace_. Es decir, información sobre qué tenemos añadido para formar parte del próximo _commit_, qué no, qué ficheros son nuevos en el sistema y Git aún no conoce, etc.
