@@ -83,6 +83,130 @@ use "git reset HEAD <file>..." to unstage
 
 Es decir, si queremos hacer _unstage_ (sacar del _stage_) de los cambios sobre `file2-modified.txt`, debemos ejecutar `git reset HEAD file2-modified.txt`.
 
+### Trabajar con ramas
+
+Una de las características más potentes de Git son las ramas. Gracias a ellas podemos encapsular nuestro trabajo y mantenerlo separado de la línea de desarrollo principal, pudiendo trabajar sin problemas de actualización de código hasta la hora en que hayamos terminado. Esto, además, nos permite cambiar rápidamente de tarea sin que el código _a medio terminar_ nos afecte.
+
+#### Listar ramas
+
+Para listar las ramas existentes en nuestro repositorio, usaremos:
+
+```sh
+$ git branch
+* master
+  dev
+```
+
+Esto nos mostrará únicamente las ramas locales, marcando con un asterisco la rama en la que nos encontremos en ese momento. Si queremos ver además las ramas remotas, podemos hacerlo con:
+
+```sh
+$ git branch -a
+* master
+  dev
+  remotes/origin/master
+  remotes/origin/dev
+```
+
+Para mostrar algo de información sobre las ramas, como por ejemplo el último commit que hay en cada una de ellas:
+
+```sh
+$ git branch -va
+* master                  bed4c52 Sample commit
+  dev                     bd81885 Another commit
+  remotes/origin/master   bed4c52 Sample commit
+  remotes/origin/dev      bed4c52 Sample commit
+```
+
+#### Crear ramas
+
+Para crear una nueva rama en nuestro repositorio, y además movernos a ella, usaremos:
+
+```sh
+$ git checkout -b my-branch
+```
+
+Es muy importante conocer que la nueva rama que estamos creamos estará basada en la rama en la que nos encontremos en ese momento. Es decir, si nos encontramos en **master**, cuyo último _commit_ es el _bed4c52_, la rama **my-branch** recién creada será una copia de **master**, con ese mismo _commit_ como último.
+
+También hay que saber que al crear nuevas ramas, los cambios sobre el _workspace_ y sobre el _stage_ que tengamos en ese momento se mantienen.
+
+#### Movernos entre ramas
+
+Para movernos entre ramas tan sólo tenemos que usar:
+
+```sh
+$ git checkout another-branch
+```
+
+Es importante tener en cuenta que al movernos entre ramas, los cambios sobre el _workspace_ y sobre el _stage_ que tengamos en ese momento se mantienen, salvo que se vean afectados por el estado de la rama destino. Es decir, si la rama a la que vamos afecta (entra en conflicto) a los cambios que tengamos en nuestro _workspace_ o _stage_, no se realizará el cambio de rama.
+
+Para poder hacerlo tendremos que limpiar el _workspace_ y el _stage_ antes de movernos de rama. Para ello podemos seguir dos estrategias diferentes:
+
+* **Hacer un commit de todos los cambios**: No es lo recomendado, ya que estaremos haciendo un _commit_ con algo que, presumiblemente, aún no está terminado.
+* **Meter los cambios en el stash**: Guardamos los cambios en el _stash_ para sacarlos posteriormente (aún no hemos hablado del _stash_, pero lo haremos pronto).
+
+Con cualquiera de estas dos estrategias, limpiaremos nuestro _stage_ y _workspace_ y podremos movernos de rama sin problemas.
+
+#### Eliminar ramas
+
+Para eliminar una rama, usaremos:
+
+```sh
+$ git branch -D my-branch
+```
+
+### Mostrar el histórico de _commits_
+
+Para mostrar un listado con los _commits_ de la rama en la que estemos en ese momento, debemos usar `git log`:
+
+```sh
+$ git log
+commit bed4c52fedbb1faf9989e2410b5f0726d24c7e9c
+Author: Juan G. Hurtado <juan.g.hurtado@gmail.com>
+Date:   Thu Jul 10 13:31:28 2014 +0200
+
+    Update FormPreview styles to match Builder
+
+commit 4de89ea88baad0169bc49d69041fb68095e27c21
+Author: Juan G. Hurtado <juan.g.hurtado@gmail.com>
+Date:   Wed Jul 9 12:28:44 2014 +0200
+
+    Remove unwanted attrs from Items on creation
+
+commit d818852126e890394612ce5509fb9d5f679f7ff0
+Author: Juan G. Hurtado <juan.g.hurtado@gmail.com>
+Date:   Wed Jul 9 12:05:59 2014 +0200
+
+    Version bump: v0.0.3
+```
+
+Como podéis ver, se muestra un listado con todos los _commits_ de la rama en la que estamos, ordenado por fecha con los más actuales arriba.
+
+Por cada _commit_ se muestra su identificador, el autor, la fecha en la que se hizo y el mensaje que se le dió.
+
+La manera por defecto con la que `git log` muestra el histórico de _commits_ no me parece la más cómoda. Personalmente prefiero algo tal que:
+
+```sh
+* bed4c52 - (HEAD, master, dev) Update FormPreview styles to match Builder (2 days ago) <Juan G. Hurtado>
+* 4de89ea - Remove unwanted attrs from Items on creation (3 days ago) <Juan G. Hurtado>
+* d818852 - (tag: v0.0.3, origin/master) Version bump: v0.0.3 (2 weeks ago) <Juan G. Hurtado>
+```
+
+Para conseguirlo sólo hay que escribir el siguiente comando:
+
+```sh
+$ git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+```
+
+Mucho mejor, ¿verdad? Y mucho más cómodo…
+
+Vale, vale, es broma. Para poder usar cómodamente este comando para mostrar el histórico de _commits_ podéis crear un alias de la siguiente forma:
+
+```sh
+$ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+```
+
+Y a partir de ahí usar `git lg` para ver el histórico.
+
 ### Añadir cambios al _stage_
 
 Una vez hemos editado nuestros ficheros, podemos añadir los cambios al _stage_ usando:
@@ -166,7 +290,7 @@ Para deshacer los cambios sobre ficheros concretos:
 $ git checkout -- file1.txt file2.js file3.html
 ```
 
-### Commit
+### Crear _commits_
 
 Una vez tenemos los cambios en nuestro _stage_, el siguiente paso es hacer el _commit_.
 
@@ -184,23 +308,82 @@ Si queremos ahorrarnos el paso del editor, podemos especificar el mensaje direct
 $ git commit -m 'My cool and descriptive message'
 ```
 
-### Undo
+### Eliminar _commits_
 
-git reset <commit>
-git reset HEAD~1
+Algo que también se hace relativamente a menudo es eliminar commits. Es muy importante tener en cuenta que **no se deben eliminar commits que ya se hayan subido al remoto**. Lo normal es querer eliminar el último _commit_ (o los últimos hasta un punto) que aún no se han subido.
 
-### Revert
+Para hacerlo debemos usar `git reset`, dándole el identificador del commit al que queremos volver. Esto es importante, ya que `reset` significa _"llévame hasta este commit, eliminando los que hay por encima"_.
 
-git revert <commit>
+```sh
+$ git reset 4de89ea
+```
+Una manera rápida de eliminar **el último commit** sin tener que buscar el identificador del commit anterior es:
 
-### Branches
+```sh
+$ git reset HEAD~1
+```
 
-git branch
-git branch -va
+Hay que tener en cuenta que por defecto, después de ejecutar `git reset`, los cambios de los _commits_ eliminados se mantienen en el _workspace_. Es decir: **no se pierden**. A esto se le llama _soft reset_.
 
-git checkout -b my-branch
-git checkout another-branch
+Si queremos eliminar los cambios de los _commits_ además de los _commits_ en si mismos, debemos informar a `git reset` de que queremos hacer un _hard reset_:
 
-git branch -D my-branch
+```sh
+$ git reset --hard 4de89ea
+```
 
-git push origin :my-branch
+Y de nuevo, lo repito para que quede muy claro, **no se deben eliminar commits que ya se han subido al servidor**. Si lo hacemos, podemos poner a los compañeros y a nosotros mismos en un buen problema lleno de quebraderos de cabeza.
+
+### Deshacer _commits_
+
+Otra cosa muy común es querer deshacer un _commit_. ¿Qué significa esto? Que queramos revertir los cambios que se introdujeron en un _commit_ concreto.
+
+Con un ejemplo concreto se entiende mejor: Imaginad que hicimos un _commit_ donde metimos un Javascript que añadía un _tooltip_ a todos los enlaces de la página, pero más adelante nos damos cuenta de que no queremos más ese comportamiento.
+
+Podríamos eliminar manualmente esa librería y crear un nuevo _commit_, pero Git es más bonito que eso y nos deja hacerlo automáticamente:
+
+```sh
+$ git revert 4de89ea
+```
+
+Al hacer esto se creará un nuevo _commit_ deshaciendo los cambios introducidos en el _commit_ **4de89ea**. Se abrirá el editor con un mensaje de _commit_ predeterminado que podremos modificar y, al guardar y cerrar el editor, el _commit_ deshaciendo los cambios quedará creado.
+
+### Subir cambios al servidor
+
+Una vez que tenemos preparados una serie de _commits_ en local, podemos subirlos al servidor de la siguiente manera:
+
+```sh
+$ git push origin master
+```
+
+Donde `master` es el nombre de la rama que queremos subir y `origin` el nombre del remoto.
+
+Habrá ocasiones en las que el servidor no nos deje subir debido a que puede haber arriba cambios que aún no tenemos. Para ello nos deberemos traer los cambios antes de subir (ver siguiente sección).
+
+
+### Traer cambios del servidor
+
+Para traernos los cambios existentes en el servidor hacia nuestra rama, usaremos:
+
+```sh
+$ git pull origin master
+```
+
+### Trabajar con el _stash_
+
+Como hemos comentado antes, hay ocasiones en las que necesitamos guardar los cambios del _workspace_ y del _stage_ para realizar alguna operación (actualizar cambios desde el servidor, cambiar de rama, etc.). Para ello podemos usar el _stash_.
+
+Podemos pensar en el _stash_ como una lista que contiene grupos de cambios temporales, que podemos consultar, aplicar en el _workspace_ actual, etc.
+
+Para añadir los cambios actuales al _stash_, usaremos:
+
+```sh
+$ git stash
+```
+
+Para aplicar en nuestro _workspace_ el último _stash_ guardado:
+
+```sh
+$ git stash pop
+```
+
+Hay más comandos para trabajar con el _stash_, pero lo más habitual es tener únicamente un elemento en la lista y aplicarlo inmediatamente después del problema que hayamos intentado solventar (cambiar de rama, actualizar con los últimos cambios del remoto, etc.).
