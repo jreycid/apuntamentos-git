@@ -103,6 +103,17 @@ use "git reset HEAD <file>..." to unstage
 
 Es decir, si queremos hacer _unstage_ (sacar del _stage_) de los cambios sobre `file2-modified.txt`, debemos ejecutar `git reset HEAD file2-modified.txt`.
 
+Una vez que estamos familiarizados con Git, el _output_ de `git status` es demasiado grande, con más información de la que realmente se necesita. Podemos mostrar algo más reducido con:
+
+```sh
+$ git status -sb
+M  file1.txt
+D  file2.txt
+?? file3.txt
+```
+
+De esta manera, podemos ver de manera directa y clara en qué estado está cada fichero (`M` para modificados, `D` para eliminados, `??` para ficheros no _trackeados_…). Y el color de esas letras nos indica si está en el _stage_ (verde) o no (rojo).
+
 ### Trabajar con ramas
 
 Una de las características más potentes de Git son las ramas. Gracias a ellas podemos encapsular nuestro trabajo y mantenerlo separado de la línea de desarrollo principal, pudiendo trabajar sin problemas de actualización de código hasta la hora en que hayamos terminado. Esto, además, nos permite cambiar rápidamente de tarea sin que el código _a medio terminar_ nos afecte.
