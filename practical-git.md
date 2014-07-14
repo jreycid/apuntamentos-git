@@ -1,4 +1,4 @@
-# Git práctico desde la terminal
+# Git práctico desde el terminal
 
 ## Conceptos clave
 
