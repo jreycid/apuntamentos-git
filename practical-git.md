@@ -405,6 +405,82 @@ Para traernos los cambios existentes en el servidor hacia nuestra rama, usaremos
 $ git pull origin master
 ```
 
+### Mezclar ramas
+
+Algo muy común cuando se trabaja con Git es mezclar ramas. Imaginemos que estamos trabajando en una _feature_ sobre una rama de desarrollo, y cuando hemos acabado queremos llevar nuestro fantástico código a la rama principal del proyecto. ¿Cómo lo hacemos?
+
+```sh
+$ git checkout master
+$ git merge my-feature
+```
+
+El primer paso es movernos a la rama a la que queremos llevar tus cambios, y el segundo es llamar a `git merge` diciéndole de dónde queremos traer los cambios.
+
+Conceptualmente, `git merge` **se trae los cambios de la rama que se le diga a la rama en la que nos encontramos**.
+
+### Solucionar conflictos
+
+Después de realizar algunas operaciones (como pueden ser `git merge` o `git pull`) es posible que haya conflictos entre nuestro código y el código que nos hemos traído.
+
+Cuando esto ocurra, después de realizar la operación Git nos avisará con un mensaje del tipo:
+
+```sh
+$ git pull origin master
+
+From https://github.com/twbs/bootstrap.git
+ * branch            master     -> FETCH_HEAD
+Auto-merging file.txt
+CONFLICT (content): Merge conflict in file.txt
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+Y si hacemos un `git status` veremos algo tal que:
+
+```sh
+$ git status
+# On branch branch-b
+# You have unmerged paths.
+#   (fix conflicts and run "git commit")
+#
+# Unmerged paths:
+#   (use "git add ..." to mark resolution)
+#
+# both modified:      file.txt
+#
+# no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+Aquí vemos como `file.txt` se encuentra dentro de la sección **Unmerged paths**, y está marcada como **both modified**. Eso significa que hay conflictos en ese fichero.
+
+Si abrimos este fichero con alguna herramienta de _diff_ (como `vimdiff`) podremos ver de manera visual cuáles son los conflictos, y resolverlos como nos convenga.
+
+Si abrimos el fichero con un editor de texto, veremos los conflictos de la siguiente manera:
+
+```sh
+the number of planets are
+<<<<<<< HEAD
+nine
+=======
+eight
+>>>>>>> branch-a
+```
+
+Esas marcas indican cuáles son nuestros cambios (los de la sección `HEAD`) y cuáles son los cambios de otra persona (en este caso, los marcados en `branch-a`). Para elegir uno de ellos, sólo tenemos que borrar las líneas que no nos interesen y dejar el fichero tal y como lo queramos (borrando las marcas de conflicto y todo lo que no queramos: el objetivo es dejar el fichero tal y como queramos que se quede).
+
+Una vez solucionados los conflictos, podemos proceder a decirle a Git qué ficheros quedan marcados como resueltos. Para ello usaremos:
+
+```sh
+$ git add file.txt
+```
+
+Cuando ya están todos los conflictos solucionados y marcados como tal, ya se puede crear el _commit_ con la resolución:
+
+```sh
+$ git commit
+```
+
+Como se puede ver, no le hemos especificado un mensaje al _commit_, por lo que se abrirá el editor del sistema para que escribamos un mensaje. En este caso, al tratarse de un _commit_ de resolución de conflictos, el mensaje ya viene pre-cargado (aunque podemos modificarlo).
+
 ### Trabajar con el _stash_
 
 Como hemos comentado antes, hay ocasiones en las que necesitamos guardar los cambios del _workspace_ y del _stage_ para realizar alguna operación (actualizar cambios desde el servidor, cambiar de rama, etc.). Para ello podemos usar el _stash_.
