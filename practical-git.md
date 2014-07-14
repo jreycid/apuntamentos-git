@@ -7,9 +7,9 @@ Antes de empezar a soltar comandos como un bellaco, hay que explicar los concept
 Comenzaremos con los diferentes estadios en los que puede encontrarse nuestro código (nuestros cambios sobre el contenido de los ficheros, en realidad).
 
 1. **Workspace**: Es el estado real de nuestros ficheros. Tal y como los vemos en nuestro editor.
-2. **Stage**: Aquí se encuentran los cambios sobre nuestros ficheros que se incluirán en el próximo _commit_. Cuando hacemos un `git add`, un `git rm` o un `git mv`, estamos metiendo cambios en el _stage_, indicándole a Git que en el próximo _commit_ esos cambios irán incluidos.
-3. **Commits** (locales): Cada _commit_ es un grupo de cambios sobre uno o varios ficheros, con una descripción, una fecha, un autor, etc. La gran diferencia con _SVN_ es que los commits en _Git_ son locales hasta que no se hace la subida al servidor. Estos commits locales (**importante lo de que sean locales**) pueden ser modificados sin peligro (con _modificados_ quiero decir que se les pueden añadir más cambios, modificarles el mensaje o incluso eliminarlos).
-4. **Commits** (remotos): Cuando se suben cambios al servidor (o como se le llama en Git: el _remoto_), se considera que estos entran a formar parte del histórico compartido entre los desarrolladores del proyecto y, por lo tanto, no es buena práctica modificarlos como se hace cuando los _commits_ son locales (y además hacerlo puede provocar importantes quebraderos de cabeza).
+2. **Stage**: Aquí se encuentran los cambios sobre nuestros ficheros que se incluirán en el próximo _commit_. Cuando hacemos un `git add`, un `git rm` o un `git mv`, estamos introduciendo cambios en el _stage_, indicándole a Git que en el próximo _commit_ esos cambios irán incluidos.
+3. **Commits** (locales): Cada _commit_ es un grupo de cambios sobre uno o varios ficheros, con una descripción, una fecha, un autor, etc. La gran diferencia con _SVN_ es que los commits en _Git_ son locales hasta que no se efectúa la subida al servidor. Estos commits locales (**importante que sean locales**) pueden ser modificados sin peligro (con _modificados_ quiero decir que se les pueden añadir más cambios, actualizar su mensaje o incluso eliminarlos).
+4. **Commits** (remotos): Cuando se suben cambios al servidor (o como se le llama en Git: el _remoto_), se considera que estos entran a formar parte del histórico compartido entre los desarrolladores del proyecto y, por lo tanto, no es buena práctica modificarlos del mismo modo en que se hace cuando los _commits_ son locales (además hacerlo puede provocar importantes quebraderos de cabeza).
 
 En resumen, el _flow_ de trabajo con Git es:
 
@@ -63,7 +63,7 @@ origin https://github.com/twbs/bootstrap.git (push)
 
 Un comando que se usa **muy** a menudo es `git status`, con el que obtenemos información sobre el estado de nuestro _stage_ y nuestro _workspace_. Es decir, información sobre qué tenemos añadido para formar parte del próximo _commit_, qué no, qué ficheros son nuevos en el sistema y Git aún no conoce, etc.
 
-Cuando ejecutamos `git status`, se nos mostrará algo tal que:
+Cuando ejecutamos `git status`, se nos mostrará algo como:
 
 ```sh
 $ git status
@@ -87,7 +87,7 @@ Untracked files:
         new-file.txt
 ```
 
-Cada sección indica en qué estado están los cambios nuestro _workspace_ con respecto al _stage_.
+Cada sección indica en qué estado están los cambios de nuestro _workspace_ con respecto al _stage_.
 
 * **Changes to be commited**: Esta sección muestra los cambios añadidos al _stage_, es decir, los que formarán parte del próximo commit. Junto a cada fichero se muestra qué se ha hecho con él: **modified**, **deleted**, **added**…
 * **Changes not staged for commit**: En esta sección se muestran los cambios que se han hecho sobre nuestros ficheros, pero que no han sido añadidos al _stage_ y por tanto **no** formarán parte del próximo commit. Al igual que en la sección anterior, se muestra el tipo de cambio que se ha hecho sobre cada fichero: **modified**, **deleted**, **added**…
@@ -156,9 +156,9 @@ Para crear una nueva rama en nuestro repositorio, y además movernos a ella, usa
 $ git checkout -b my-branch
 ```
 
-Es muy importante conocer que la nueva rama que estamos creamos estará basada en la rama en la que nos encontremos en ese momento. Es decir, si nos encontramos en **master**, cuyo último _commit_ es el _bed4c52_, la rama **my-branch** recién creada será una copia de **master**, con ese mismo _commit_ como último.
+Es muy importante saber que la nueva rama que estamos creando estará basada en la rama en la que nos encontremos en ese momento. Es decir, si nos encontramos en **master**, cuyo último _commit_ es el _bed4c52_, la rama **my-branch** recién creada será una copia de **master**, con ese mismo _commit_ como último.
 
-También hay que saber que al crear nuevas ramas, los cambios sobre el _workspace_ y sobre el _stage_ que tengamos en ese momento se mantienen.
+También hay que tener en cuenta que al crear nuevas ramas, los cambios sobre el _workspace_ y sobre el _stage_ que tengamos en ese momento se mantienen.
 
 #### Movernos entre ramas
 
@@ -210,11 +210,11 @@ Date:   Wed Jul 9 12:05:59 2014 +0200
     Version bump: v0.0.3
 ```
 
-Como podéis ver, se muestra un listado con todos los _commits_ de la rama en la que estamos, ordenado por fecha con los más actuales arriba.
+Como podéis ver, se muestra un listado con todos los _commits_ de la rama en la que estamos, ordenado cronológicamente, con los más actuales arriba.
 
 Por cada _commit_ se muestra su identificador, el autor, la fecha en la que se hizo y el mensaje que se le dió.
 
-La manera por defecto con la que `git log` muestra el histórico de _commits_ no me parece la más cómoda. Personalmente prefiero algo tal que:
+La manera por defecto con la que `git log` muestra el histórico de _commits_ no me parece la más cómoda. Personalmente prefiero:
 
 ```sh
 * bed4c52 - (HEAD, master, dev) Update FormPreview styles to match Builder (2 days ago) <Juan G. Hurtado>
@@ -256,7 +256,7 @@ $ git mv file.txt other/folder/
 
 Pero lo normal es que lo hagamos desde nuestro editor, o desde el explorador de ficheros del sistema operativo. Si lo hacemos así, Git no sabrá cuál era el nombre antiguo del fichero y cuál es el nuevo (o cuál era la ruta antigua y cuál es la nueva). Pensará que hay un fichero nuevo en el sistema (el nombre o ruta nueva), y uno que hemos eliminado (el nombre o ruta antigua).
 
-En estos casos, para indicarle a Git el renombrado (o movimiento de ficheros), sólo tenemos que decirle que añada el nuevo nombre y elimine el antiguo:
+En estos casos, para indicarle a Git el renombrado (o movimiento de ficheros), tenemos que decirle que añada el nuevo nombre y elimine el antiguo:
 
 ```sh
 $ mv file.txt renamed.txt
@@ -276,7 +276,7 @@ Al igual que cuando movemos ficheros, lo normal es hacerlo desde fuera de Git (n
 $ rm file.txt
 $ git rm file.txt
 ```
-Algo que suele ocurrir, es que queramos añadir al _stage_ modificaciones sobre ficheros y también la eliminación de otros tantos. Para ello, con lo explicado hasta ahora habría que hacerlo en dos pasos:
+Algo que suele ocurrir, es que queramos añadir al _stage_ modificaciones sobre ficheros, así como la eliminación de otros tantos. Para ello, con lo explicado hasta ahora habría que hacerlo en dos pasos:
 
 ```sh
 $ git add modified-file1.txt modified-file2.txt
@@ -387,7 +387,7 @@ Otra cosa muy común es querer deshacer un _commit_. ¿Qué significa esto? Que 
 
 Con un ejemplo concreto se entiende mejor: Imaginad que hicimos un _commit_ donde metimos un Javascript que añadía un _tooltip_ a todos los enlaces de la página, pero más adelante nos damos cuenta de que no queremos más ese comportamiento.
 
-Podríamos eliminar manualmente esa librería y crear un nuevo _commit_, pero Git es más bonito que eso y nos deja hacerlo automáticamente:
+Podríamos eliminar manualmente esa librería y crear un nuevo _commit_, pero Git es más inteligente que eso y nos deja hacerlo automáticamente:
 
 ```sh
 $ git revert 4de89ea
@@ -405,7 +405,7 @@ $ git push origin master
 
 Donde `master` es el nombre de la rama que queremos subir y `origin` el nombre del remoto.
 
-Habrá ocasiones en las que el servidor no nos deje subir debido a que puede haber arriba cambios que aún no tenemos. Para ello nos deberemos traer los cambios antes de subir (ver siguiente sección).
+Habrá ocasiones en las que el servidor no nos permita subir debido a que existan arriba cambios que aún no tenemos. Para ello nos deberemos traer los cambios antes de subir (ver siguiente sección).
 
 
 ### Traer cambios del servidor
@@ -494,7 +494,7 @@ Como se puede ver, no le hemos especificado un mensaje al _commit_, por lo que s
 
 ### Trabajar con el _stash_
 
-Como hemos comentado antes, hay ocasiones en las que necesitamos guardar los cambios del _workspace_ y del _stage_ para realizar alguna operación (actualizar cambios desde el servidor, cambiar de rama, etc.). Para ello podemos usar el _stash_.
+Como hemos comentado antes, hay ocasiones en las que necesitamos guardar los cambios del _workspace_ y del _stage_ para realizar alguna operación (actualizar cambios desde el servidor, cambiar de rama, etc.). Para ello usaremos el _stash_.
 
 Podemos pensar en el _stash_ como una lista que contiene grupos de cambios temporales, que podemos consultar, aplicar en el _workspace_ actual, etc.
 
