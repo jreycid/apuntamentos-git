@@ -18,7 +18,7 @@ En resumen, el _flow_ de trabajo con Git es:
 3. Hago el **commit**
 4. Subo los cambios al remoto
 
-## Acciones específicas
+## Trabajando con Git
 
 ### Clonar repositorios
 
