@@ -160,6 +160,19 @@ Es muy importante saber que la nueva rama que estamos creando estará basada en 
 
 También hay que tener en cuenta que al crear nuevas ramas, los cambios sobre el _workspace_ y sobre el _stage_ que tengamos en ese momento se mantienen.
 
+#### Crear una rama local a partir de una rama remota
+
+Hay ocasiones en las que nos interesa crear una nueva rama local basándonos en el contenido de una rama remota en lugar de el contenido de la rama en la que nos encontremos en ese momento (que como se ha explicado en el punto anterior, es el comportamiento por defecto).
+
+Para este fin, haremos lo siguiente:
+
+```sh
+$ git fetch
+$ git checkout -b my-branch origin/my-branch
+```
+
+Lo primero ha sido actualizar nuestras referencias a las ramas remotas usando `git fetch`. A partir de ahí ya podemos crear la rama con el comando mencionado, donde `my-branch` es el nombre de la rama local que queremos crear y `origin/my-branch` es el nombre a la referencia de la rama remota de donde queremos basarnos para crear nuestra rama local.
+
 #### Movernos entre ramas
 
 Para movernos entre ramas tan sólo tenemos que usar:
