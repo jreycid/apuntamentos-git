@@ -171,7 +171,7 @@ $ git fetch
 $ git checkout -b my-branch origin/my-branch
 ```
 
-Lo primero ha sido actualizar nuestras referencias a las ramas remotas usando `git fetch`, para así tener los últimos cambios del servidor disponibles en dicha referencia.
+Lo primero ha sido actualizar nuestras referencias a las ramas remotas usando `git fetch`, para así tener los últimos cambios del servidor disponibles en dichas referencias.
 
 A partir de ahí ya podemos crear la rama con el comando mencionado, en el cual `my-branch` es el nombre de la rama local que queremos crear y `origin/my-branch` es el nombre a la referencia a la rama remota en la que queremos basarnos para crear nuestra rama local.
 
