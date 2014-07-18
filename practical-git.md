@@ -493,6 +493,18 @@ eight
 
 Esas marcas indican cuáles son nuestros cambios (los de la sección `HEAD`) y cuáles son los cambios de otra persona (en este caso, los marcados en `branch-a`). Para elegir uno de ellos, sólo tenemos que borrar las líneas que no nos interesen y dejar el fichero tal y como lo queramos (borrando las marcas de conflicto y todo lo que no queramos: el objetivo es dejar el fichero tal y como queramos que se quede).
 
+Puede ocurrir que en lugar de mezclar los cambios, necesitemos quedarnos con el fichero tal y como lo teníamos previamente:
+
+```sh
+$ git checkout --ours file.txt
+```
+
+O tal vez queramos quedarnos con el fichero en el estado en el que estaba en la otra rama, olvidándonos de nuestros cambios:
+
+```sh
+$ git checkout --theirs file.txt
+```
+
 Una vez solucionados los conflictos, podemos proceder a decirle a Git qué ficheros quedan marcados como resueltos. Para ello usaremos:
 
 ```sh
