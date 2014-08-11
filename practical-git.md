@@ -27,7 +27,7 @@ Para instalar el plugin Egit, añadiremos su URL de instalación a la lista de "
 * Eclipse Git Team Provider
 * JGit
 
-!(https://dl.dropboxusercontent.com/u/682947/git/01install.png)
+![](https://dl.dropboxusercontent.com/u/682947/git/01install.png)
 
 Una vez instalados y reiniciado Eclipse, ya tendremos disponible Egit en nuestro IDE.
 
