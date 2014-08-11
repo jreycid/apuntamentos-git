@@ -56,11 +56,11 @@ $ cd my-awesome-bootstrap/
 
 Para clonar un repositorio desde Egit, accedemos a la vista "Git Repositories" y seleccionamos la opción "Clone a Git repository".
 
-!(https://dl.dropboxusercontent.com/u/682947/git/02clone.png)
+![](https://dl.dropboxusercontent.com/u/682947/git/02clone.png)
 
 Cumplimentamos los datos correspondientes al repositorio que necesitamos clonar y seguimos los pasos del _wizard_.
 
-!(https://dl.dropboxusercontent.com/u/682947/git/03clone.png)
+![](https://dl.dropboxusercontent.com/u/682947/git/03clone.png)
 
 Una vez clonado, nos aparecerá en la lista de la vista "Git repositories". Si queremos importarlo como projecto, podemos hacerlo seleccionado la opción "Import projects" al hacer click derecho encima del repositorio que deseamos importar.
 
@@ -294,7 +294,7 @@ Y a partir de ahí usar `git lg` para ver el histórico.
 
 Para ver el _log_ de _commits_, seleccionaremos la opción "Show in history" dentro de la sección "Team" que aparece al hacer click derecho sobre nuestro proyecto en Eclipse.
 
-!(https://dl.dropboxusercontent.com/u/682947/git/04log.png)
+![](https://dl.dropboxusercontent.com/u/682947/git/04log.png)
 
 ### Añadir cambios al _stage_
 
@@ -403,7 +403,7 @@ Una vez hemos hecho cambios sobre los ficheros de nuestro proyecto, podemos hace
 
 Se mostrará una ventana desde donde podremos seleccionar los ficheros que queremos incluir en nuestro _commit_, y una caja de texto para insertar el mensaje que queramos darle.
 
-!(https://dl.dropboxusercontent.com/u/682947/git/05commit.png)
+![](https://dl.dropboxusercontent.com/u/682947/git/05commit.png)
 
 ### Modificar el último _commit_
 
