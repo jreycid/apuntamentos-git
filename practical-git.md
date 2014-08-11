@@ -225,6 +225,18 @@ Para eliminar una rama, usaremos:
 $ git branch -D my-branch
 ```
 
+#### Trabajar con ramas desde Eclipse
+
+Para trabajar con ramas desde el plugin Egit para Eclipse, podemos usar la sección "Branches" dentro de la información del repositorio en la vista "Git repositories".
+
+Esta sección está dividida en dos partes: "Local" y "Remote tracking".
+
+La primera corresponde con las ramas locales que están disponibles en nuestro repositorio clonado.
+
+La segunda corresponde con las ramas remotas, las que están subidas al servidor.
+
+Desde aquí podemos cambiar fácilmente entre ramas haciendo doble click sobre la que necesitemos.
+
 ### Mostrar el histórico de _commits_
 
 Para mostrar un listado con los _commits_ de la rama en la que estemos en ese momento, debemos usar `git log`:
@@ -277,6 +289,12 @@ $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Cre
 ```
 
 Y a partir de ahí usar `git lg` para ver el histórico.
+
+### Ver el histórico de _commits_ desde Eclipse
+
+Para ver el _log_ de _commits_, seleccionaremos la opción "Show in history" dentro de la sección "Team" que aparece al hacer click derecho sobre nuestro proyecto en Eclipse.
+
+**IMAGEN 04**
 
 ### Añadir cambios al _stage_
 
@@ -379,6 +397,14 @@ Si queremos ahorrarnos el paso del editor, podemos especificar el mensaje direct
 $ git commit -m 'My cool and descriptive message'
 ```
 
+### Crear _commits_ desde Eclipse
+
+Una vez hemos hecho cambios sobre los ficheros de nuestro proyecto, podemos hacer _commits_ seleccionando la opción "Commit", dentro de la sección "Team" que aparece al hacer click derecho sobre nuestro proyecto en Eclipse.
+
+Se mostrará una ventana desde donde podremos seleccionar los ficheros que queremos incluir en nuestro _commit_, y una caja de texto para insertar el mensaje que queramos darle.
+
+**IMAGEN 05**
+
 ### Modificar el último _commit_
 
 Si nos hemos olvidado de añadir algo al último _commit_ y **aún no lo hemos subido al servidor**, podemos arreglarlo de la siguiente forma:
@@ -421,6 +447,10 @@ $ git reset --hard 4de89ea
 
 Y de nuevo, lo repito para que quede muy claro, **no se deben eliminar commits que ya se han subido al servidor**. Si lo hacemos, podemos poner a los compañeros y a nosotros mismos en un buen problema lleno de quebraderos de cabeza.
 
+### Eliminar _commits_ desde Eclipse
+
+Para eliminar un _commit_ elegiremos la opción "Reset" que nos aparecerá al hacer click derecho sobre el _commit_ del histórico (el _log_) al que queramos movernos, eliminando todos los que estén por encima de este.
+
 ### Deshacer _commits_
 
 Otra cosa muy común es querer deshacer un _commit_. ¿Qué significa esto? Que queramos revertir los cambios que se introdujeron en un _commit_ concreto.
@@ -435,6 +465,10 @@ $ git revert 4de89ea
 
 Al hacer esto se creará un nuevo _commit_ deshaciendo los cambios introducidos en el _commit_ **4de89ea**. Se abrirá el editor con un mensaje de _commit_ predeterminado que podremos modificar y, al guardar y cerrar el editor, el _commit_ deshaciendo los cambios quedará creado.
 
+### Deshacer _commits_ desde Eclipse
+
+Para deshacer un _commit_ elegiremos la opción "Revert commit" que nos aparecerá al hacer click derecho sobre el _commit_ del histórico (el _log_) que queramos deshacer.
+
 ### Subir cambios al servidor
 
 Una vez que tenemos preparados una serie de _commits_ en local, podemos subirlos al servidor de la siguiente manera:
@@ -447,6 +481,9 @@ Donde `master` es el nombre de la rama que queremos subir y `origin` el nombre d
 
 Habrá ocasiones en las que el servidor no nos permita subir debido a que existan arriba cambios que aún no tenemos. Para ello nos deberemos traer los cambios antes de subir (ver siguiente sección).
 
+### Subir cambios al servidor desde Eclipse
+
+Para subir cambios al servidor, elegiremos la opción "Push to upstream" desde la sección "Team" que aparece al hacer click derecho sobre nuestro proyecto en Eclipse.
 
 ### Traer cambios del servidor
 
@@ -455,6 +492,10 @@ Para traernos los cambios existentes en el servidor hacia nuestra rama, usaremos
 ```sh
 $ git pull origin master
 ```
+
+### Traer cambios del servidor desde Eclipse
+
+Para traer cambios del servidor, elegiremos la opción "Fetch from upstream" desde la sección "Team" que aparece al hacer click derecho sobre nuestro proyecto en Eclipse.
 
 ### Mezclar ramas
 
@@ -468,6 +509,10 @@ $ git merge my-feature
 El primer paso es movernos a la rama a la que queremos llevar tus cambios, y el segundo es llamar a `git merge` diciéndole de dónde queremos traer los cambios.
 
 Conceptualmente, `git merge` **se trae los cambios de la rama que se le diga a la rama en la que nos encontramos**.
+
+### Mezclar ramas desde Eclipse
+
+Para mezclar ramas desde Eclipse nos deberemos situar en la vista "Git repositories" y, estando situados en la rama a la que queremos traernos los cambios, hacemos click derecho encima de la rama de la que queremos traer los cambios, y seleccionamos la opción "Merge".
 
 ### Solucionar conflictos
 
@@ -543,6 +588,14 @@ $ git commit
 ```
 
 Como se puede ver, no le hemos especificado un mensaje al _commit_, por lo que se abrirá el editor del sistema para que escribamos un mensaje. En este caso, al tratarse de un _commit_ de resolución de conflictos, el mensaje ya viene pre-cargado (aunque podemos modificarlo).
+
+### Solucionar conflictos desde Eclipse
+
+Cuando ocurren conflictos después de alguna operación (como puede ser _pull_ o _merge_), Eclipse nos avisará sobe qué ficheros tienen conflictos, y nos permitirá abrirlos para revisarlos.
+
+Para abrirlos con la herramienta de resolución de conflictos, haremos click derecho sobre el fichero en cuestión y seleccionaremos la opción "Merge tool" en la sección "Team". Esto nos abrirá la vista de resolución, con los cambios conflictivos a cada lado.
+
+Una vez resueltos los conflictos, añadimos los ficheros ("Team > Add to Index") y procedemos a realizar el _commit_ con la resolución.
 
 ### Trabajar con el _stash_
 
