@@ -1,4 +1,4 @@
-# Git práctico desde el terminal
+# Git práctico
 
 ## Conceptos clave
 
@@ -17,6 +17,19 @@ En resumen, el _flow_ de trabajo con Git es:
 2. Añado al **stage** los cambios que quiero commitear
 3. Hago el **commit**
 4. Subo los cambios al remoto
+
+## Instalar plugin de Eclipse
+
+Para trabajar con Git desde Eclipse podemos hacer uso del plugin [Egit](http://eclipse.org/egit/), que nos ofrece una interfaz gráfica integrada con el IDE desde la cual podemos hacer todas nuestras operaciones para gestionar el control de versiones de nuestros proyectos.
+
+Para instalar el plugin Egit, añadiremos su URL de instalación a la lista de "Available Software Sites" situada en el menú "Help > Install New Software" de Eclipse. Una vez añadida, la seleccionamos de la lista, y elegimos los dos paquetes que necesitamos instalar:
+
+* Eclipse Git Team Provider
+* JGit
+
+**IMAGEN 01**
+
+Una vez instalados y reiniciado Eclipse, ya tendremos disponible Egit en nuestro IDE.
 
 ## Trabajando con Git
 
@@ -38,6 +51,18 @@ $ mkdir my-awesome-bootstrap/
 $ git clone https://github.com/twbs/bootstrap.git my-awesome-bootstrap
 $ cd my-awesome-bootstrap/
 ```
+
+#### Clonar desde Eclipse con Egit
+
+Para clonar un repositorio desde Egit, accedemos a la vista "Git Repositories" y seleccionamos la opción "Clone a Git repository".
+
+**IMAGEN 02**
+
+Cumplimentamos los datos correspondientes al repositorio que necesitamos clonar y seguimos los pasos del _wizard_.
+
+**IMAGEN 03**
+
+Una vez clonado, nos aparecerá en la lista de la vista "Git repositories". Si queremos importarlo como projecto, podemos hacerlo seleccionado la opción "Import projects" al hacer click derecho encima del repositorio que deseamos importar.
 
 ### Añadir un servidor a un repositorio local existente
 
