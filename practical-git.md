@@ -647,4 +647,3 @@ A continuación enumero algunos _alias_ útiles:
 * `l10 = !git l --max-count=10`: Muestra los últimos 10 _commits_ realizados
 * `last = !git l -1`: Muestra el último _commit_ realizado
 * `since-last-tag = !git l `git describe --tags --abbrev=0`..HEAD`: Muestra los _commits_ realizados desde el último _tag_ creado
-* `archive-last-tag = !git archive --format=zip /`git describe --tags --abbrev=0/` > /`git describe --tags --abbrev=0/`.zip`: Crea
