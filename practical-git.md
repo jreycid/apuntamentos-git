@@ -616,3 +616,15 @@ $ git stash pop
 ```
 
 Hay más comandos para trabajar con el _stash_, pero lo más habitual es tener únicamente un elemento en la lista y aplicarlo inmediatamente después del problema que hayamos intentado solventar (cambiar de rama, actualizar con los últimos cambios del remoto, etc.).
+
+### Alias útiles
+
+A la hora de trabajar con Git, es muy cómodo crear algunos alias para las tareas más habituales (o más tediosas), para así perder menos tiempo escribiendo comandos y más tiempo haciendo cosas de verdad.
+
+Para crear _alias_ sólo tenemos que crearlos en nuestro fichero `.gitconfig`, que estará situado en el `$HOME` de nuestro usuario.
+
+Dentro de este fichero, crearemos una sección para los _alias_ de la siguiente forma:
+
+```sh
+
+```
