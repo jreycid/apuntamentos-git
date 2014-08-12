@@ -626,5 +626,25 @@ Para crear _alias_ sólo tenemos que crearlos en nuestro fichero `.gitconfig`, q
 Dentro de este fichero, crearemos una sección para los _alias_ de la siguiente forma:
 
 ```sh
-
+[alias]
+  name = command
 ```
+
+A continuación enumero algunos _alias_ útiles:
+
+* `st = status -sb`: Muestra el estado de nuestro _workspace_ de manera resumida: `git st`
+* `ci = commit`: Forma resumida para crear commits: `git ci`
+* `cm = commit -m`: Forma resumida para crear commits con mensaje: `git cm "My cool commit"`
+* `amend = commit --amend -C HEAD`: Forma abreviada para modificar el último _commit_ realizado, reutilizando su mensaje: `git amend`
+* `co = checkout`: Forma abreviada para _checkout_: `git co`
+* `br = branch -va`: Mostrar el listado de _branches_ de nuestro repositorio, incluyendo los remotos: `git br`
+* `brd = branch -D`: Forma abreviada para borrar _branches_: `git brd my-branch`
+* `undo = reset --soft HEAD^`: Deshacer el último _commit_ realizado: `git undo`
+* `unmerged = ls-files --unmerged`: Listar los ficheros no mezclados (con conflictos): `git unmerged`
+* `untracked = ls-files --other --exclude-standard`: Listar los ficheros no gestionados por Git (_untracked_): `git untracked`
+* `ignored = ls-files --ignored --exclude-standard`: Listar los ficheros ignorados por Git: `git ignored`
+* `l5 = log --max-count=5`: Muestra los 5 últimos _commits_ realizados
+* `l10 = !git l --max-count=10`: Muestra los últimos 10 _commits_ realizados
+* `last = !git l -1`: Muestra el último _commit_ realizado
+* `since-last-tag = !git l `git describe --tags --abbrev=0`..HEAD`: Muestra los _commits_ realizados desde el último _tag_ creado
+* `archive-last-tag = !git archive --format=zip /`git describe --tags --abbrev=0/` > /`git describe --tags --abbrev=0/`.zip`: Crea
