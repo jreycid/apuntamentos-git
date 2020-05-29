@@ -1,4 +1,4 @@
-# Git práctico
+# Tutorial de Git
 
 ## Conceptos clave
 
