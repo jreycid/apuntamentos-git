@@ -1,4 +1,8 @@
 # Tutorial de Git
+![](https://i.imgur.com/Kh7jxID.jpg)  
+
+Hola, ¡bienvenidos al tutorial de GIT!  
+En este tutorial aprenderás los conceptos básicos sobre Git.
 
 ## Conceptos clave
 
