@@ -298,8 +298,6 @@ Y a partir de ahí usar `git lg` para ver el histórico.
 
 Para ver el _log_ de _commits_, seleccionaremos la opción "Show in history" dentro de la sección "Team" que aparece al hacer click derecho sobre nuestro proyecto en Eclipse.
 
-![](https://dl.dropboxusercontent.com/u/682947/git/04log.png)
-
 ### Añadir cambios al _stage_
 
 Una vez hemos editado nuestros ficheros, podemos añadir los cambios al _stage_ usando:
