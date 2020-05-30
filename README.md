@@ -1,8 +1,9 @@
 # Tutorial de Git
-![](https://i.imgur.com/Kh7jxID.jpg)  
 
-Hola, ¡bienvenidos al tutorial de GIT!  
+Hola, ¡bienvenidos al tutorial de GIT de la asignatura de CODE de 1º de DAW del IES A Pinguela!
 En este tutorial aprenderás los conceptos básicos sobre Git.
+
+![](https://i.imgur.com/Kh7jxID.jpg)  
 
 ## Conceptos clave
 
