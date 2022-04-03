@@ -17,8 +17,8 @@ jobs:
           git config --global user.email "jreycid@gmail.com"
           git config --global user.name "jreycid"
       - name: Install
-        run: npm ci
+        #run: npm ci
       - name: Build
-        run: npm run build
+        #run: npm run build
       - name: Deploy
         run: npm run deploy -- -r git@github.com:jreycid/Tutorial-GIT.git
