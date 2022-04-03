@@ -23,4 +23,4 @@ jobs:
       - name: Deploy
       #  run: npm run deploy -- -r git@github.com:jreycid/Tutorial-GIT.git
       #  run: run deploy -- -r git@github.com:jreycid/Tutorial-GIT.git
-        run: run -- -r git@github.com:jreycid/Tutorial-GIT.git
+        run: run git@github.com:jreycid/Tutorial-GIT.git
