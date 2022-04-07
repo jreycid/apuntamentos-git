@@ -20,6 +20,6 @@ jobs:
       #  run: ci
       #- name: Build
       #  run: run build
-      #- name: Deploy
+      - name: Deploy
       #  run: npm run deploy -- -r git@github.com:jreycid/Tutorial-GIT.git
         run: run deploy -- -r git@github.com:jreycid/Tutorial-GIT.git
