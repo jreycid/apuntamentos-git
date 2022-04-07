@@ -17,7 +17,7 @@ jobs:
           git config --global user.email "jreycid@gmail.com"
           git config --global user.name "jreycid"
       - name: Install
-      #  run: ci
+        run: ci
       #- name: Build
       #  run: run build
       - name: Deploy
