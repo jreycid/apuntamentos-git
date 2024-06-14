@@ -1,4 +1,4 @@
-# Tutorial de Git
+# Titorial de Git
 
 Hola, ¡bienvenidos al tutorial de GIT de la asignatura de CODE de 1º de DAW   
 En este tutorial aprenderás los conceptos básicos sobre Git.
